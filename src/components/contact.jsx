@@ -3,6 +3,8 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
+import Typography from '@mui/material/Typography';
+
 
 class Contact extends React.Component {
     state={
@@ -39,9 +41,9 @@ class Contact extends React.Component {
         else
         return (
             <div onClick={this.handleToggle}>
-                <h3>{this.state.contact.name}</h3>
-                <h2>{this.state.contact.phone}</h2>
-                <h1>{this.state.contact.place.title}</h1>
+                <Typography variant="h4" margin="5vh">{this.state.contact.name}</Typography>
+                <Typography variant="h3" margin="5vh">{this.state.contact.phone}</Typography>
+                <Typography variant="h4" margin="5vh">{this.state.contact.place.title}</Typography>
                 <div>
                 {/* <Button onClick={this.handleToggle}>Show backdrop</Button> */}
                 <Backdrop

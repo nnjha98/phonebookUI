@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react';
 import Contact from './contact';
+import AddNew from './addNew';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 
 class Contacts extends React.Component {
@@ -28,9 +33,23 @@ class Contacts extends React.Component {
       // this.use(cors());
       var axios = require('axios');
   
+    //   var axios = require('axios');
+
+    // var config = {
+    // method: 'get',
+    // url: 'https://cors-anywhere.herokuapp.com/http://localhost:8080/contacts',
+    // headers: { 
+    //     'Authorization': 'Basic YWRtaW46YWRtaW4='
+    //     }
+    // };
+
+    // axios(config)
+    
+
       var config = {
         method: 'get',
         url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv5-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place',
+        // url: 
         headers: { 
         },
         crossdomain : true
@@ -39,7 +58,7 @@ class Contacts extends React.Component {
     try
     {
         var response = await axios(config);
-        console.log(response.data.value);
+        console.log(response.data);
         this.setState({contacts:response.data.value});
     }
     catch(err)
@@ -56,12 +75,12 @@ class Contacts extends React.Component {
             <Backdrop
                     sx={{ color: "black", zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "white" }}
                     open={this.state.openAddNew}
-                    onClick={()=>{this.setState({openAddNew:!this.state.openAddNew})}}
+                    onClick={(e)=>{console.log(e.target);console.log(e.currentTarget);if (e.target===e.currentTarget)this.setState({openAddNew:!this.state.openAddNew})}}
                 >
                     <div style={{display: "flex", flexDirection: "column"}}>
                     {/* <h3>{this.state.contact.name}</h3>
                     <h2>{this.state.contact.phone}</h2> */}
-                    <h1>Will load AddContacts</h1>
+                    <AddNew/>
                     {/* <h3>{this.state.contact.address}</h3> */}
                     </div>
             </Backdrop>
@@ -80,7 +99,7 @@ class Contacts extends React.Component {
                 <h1>All My Friends</h1>
             </div>
             <div style={{display:"flex", height:"10%",width:"94%", margin:"3%", flexDirection:"row", justifyContent:"space-evenly",alignItems:"center", backgroundColor:"transparent", flexWrap:"wrap", overflow:"auto"}}>
-                {this.state.contacts.map((contact)=><div style={{backgroundColor:"pink", width:"30%", border:"10px solid blue"}}><Contact key={contact.ID} contactInfo={contact}/></div>)}
+                {this.state.contacts.map((contact)=><Card variant="outlined" style={{ width:"30%", border:"1px solid", margin:"2px"}}><Contact key={contact.ID} contactInfo={contact}/></Card>)}
             </div> 
         </div>);
     }
