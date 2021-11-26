@@ -48,7 +48,7 @@ class Contacts extends React.Component {
 
       var config = {
         method: 'get',
-        url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv5-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place',
+        url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place',
         // url: 
         headers: { 
         },
@@ -95,11 +95,11 @@ class Contacts extends React.Component {
                 width: "7vmin",
                 position: 'fixed',
             }}><AddIcon/></Fab>
-            <div style={{display:"flex", height:"80%",width:"94%", margin:"3%", flexDirection:"row", justifyContent:"space-evenly",alignItems:"center", backgroundColor:"transparent", flexWrap:"wrap", overflow:"auto"}}>
+            <div style={{display:"flex", height:"80%",width:"94%", margin:"3%", flexDirection:"row", justifyContent:"space-evenly",alignItems:"stretch", backgroundColor:"transparent", flexWrap:"wrap", overflow:"auto"}}>
                 <h1>All My Friends</h1>
             </div>
             <div style={{display:"flex", height:"10%",width:"94%", margin:"3%", flexDirection:"row", justifyContent:"space-evenly",alignItems:"center", backgroundColor:"transparent", flexWrap:"wrap", overflow:"auto"}}>
-                {this.state.contacts.map((contact)=><Card variant="outlined" style={{ width:"30%", border:"1px solid", margin:"2px"}}><Contact key={contact.ID} contactInfo={contact}/></Card>)}
+                {this.state.contacts.map((contact)=><div variant="outlined" overflow="scroll" style={{ flexGrow:1 ,width:"30%", border:"1px solid", margin:"2px", overflow: "scroll"}}><Contact key={contact.ID} contactInfo={contact}/></div>)}
             </div> 
         </div>);
     }

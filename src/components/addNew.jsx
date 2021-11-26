@@ -38,7 +38,10 @@ import { Visibility } from '@mui/icons-material';
 
 class AddNew extends React.Component {
     state={
-                VisibiltyOfOne:0
+                VisibiltyOfOne:0,
+                EnteredName: "",
+                EnteredPhone: "",
+                EnteredCity: ""
             }
 
     render() 
@@ -54,11 +57,12 @@ class AddNew extends React.Component {
             noValidate
             autoComplete="off"
             >
-            <TextField id="outlined-basic" label="Name" variant="outlined" style={{width:500, alignSelf:"center"}}/>
-            <TextField id="filled-basic" label="Phone" variant="filled" style={{width:500, alignSelf:"center"}}/>
-            <TextField id="standard-basic" label="City" variant="standard" style={{width:500, alignSelf:"center"}}/>
+            <TextField onChange={(e)=>this.setState({EnteredName: e.target.value})} id="outlined-basic" label="Name" variant="outlined" style={{width:500, alignSelf:"center"}}/>
+            <TextField onChange={(e)=>this.setState({EnteredPhone: e.target.value})} id="filled-basic" label="Phone" variant="filled" style={{width:500, alignSelf:"center"}}/>
+            <TextField onChange={(e)=>this.setState({EnteredCity: e.target.value})} id="standard-basic" label="City" variant="standard" style={{width:500, alignSelf:"center"}}/>
             <div onClick={()=>this.setState({VisibiltyOfOne: 1-this.state.VisibiltyOfOne})} style={{width:500, alignSelf:"center",backgroundColor:"red" ,opacity:this.state.VisibiltyOfOne}}>1</div>
             <Button variant="outlined" style={{width:500, alignSelf:"center"}}>Go for it</Button>
+            <div>{this.state.EnteredName}</div>
             </Box>
         </div>);
     }
