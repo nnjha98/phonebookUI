@@ -21,6 +21,33 @@ class Contacts extends React.Component {
         openAddNew:false
     }
 
+    var axios = require('axios');
+var data = JSON.stringify({
+  "place": "4a519e61-3c3a-4bd9-ab12-d7e0c5329933",
+  "phone": "6243534567",
+  "name": "Gans WW"
+});
+
+var config = {
+  method: 'post',
+  url: 'https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/insertContacts',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+
+
+
     handleClose = () => {
             this.setState({open:false});
         };
