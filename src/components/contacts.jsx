@@ -21,32 +21,6 @@ class Contacts extends React.Component {
         openAddNew:false
     }
 
-    var axios = require('axios');
-var data = JSON.stringify({
-  "place": "4a519e61-3c3a-4bd9-ab12-d7e0c5329933",
-  "phone": "6243534567",
-  "name": "Gans WW"
-});
-
-var config = {
-  method: 'post',
-  url: 'https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/insertContacts',
-  headers: { 
-    'Content-Type': 'application/json'
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-
-
 
     handleClose = () => {
             this.setState({open:false});
@@ -72,7 +46,7 @@ axios(config)
 
     // axios(config)
     
-
+        
       var config = {
         method: 'get',
         url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place',
@@ -96,6 +70,31 @@ axios(config)
   
     }
 
+    refreshState=async ()=>
+    {
+        console.log("Refreshing contact list");
+        var axios = require('axios');
+        var config = {
+            method: 'get',
+            url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place',
+            // url: 
+            headers: { 
+            },
+            crossdomain : true
+          };
+    
+        try
+        {
+            var response = await axios(config);
+            console.log(response.data);
+            this.setState({contacts:response.data.value});
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
     render() { 
         return (
         <div>
@@ -107,7 +106,7 @@ axios(config)
                     <div style={{display: "flex", flexDirection: "column"}}>
                     {/* <h3>{this.state.contact.name}</h3>
                     <h2>{this.state.contact.phone}</h2> */}
-                    <AddNew/>
+                    <AddNew onRefresh={this.refreshState}/>
                     {/* <h3>{this.state.contact.address}</h3> */}
                     </div>
             </Backdrop>
@@ -126,7 +125,7 @@ axios(config)
                 <h1>All My Friends</h1>
             </div>
             <div style={{display:"flex", height:"10%",width:"94%", margin:"3%", flexDirection:"row", justifyContent:"space-evenly",alignItems:"center", backgroundColor:"transparent", flexWrap:"wrap", overflow:"auto"}}>
-                {this.state.contacts.map((contact)=><div variant="outlined" overflow="scroll" style={{ flexGrow:1 ,width:"30%", border:"1px solid", margin:"2px", overflow: "scroll"}}><Contact key={contact.ID} contactInfo={contact}/></div>)}
+                {this.state.contacts.map((contact)=><div key={contact.ID} variant="outlined" overflow="scroll" style={{ flexGrow:1 ,width:"30%", height:"100%" ,border:"1px solid", margin:"2px", overflow: "scroll"}}><Contact key={contact.ID} contactInfo={contact}/></div>)}
             </div> 
         </div>);
     }
