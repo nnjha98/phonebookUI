@@ -146,6 +146,11 @@ class AddNew extends React.Component {
             " is the error in " +
             err.response.data.error.target
         );
+        this.setState({
+          name: { error: false, helperText: "" },
+          phone: { error: false, helperText: "" },
+          place: { error: false, helperText: "" }
+        });
         if (err.response.data.error.target === "name")
           this.setState({
             name: { error: true, helperText: err.response.data.error.message }
