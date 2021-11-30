@@ -141,7 +141,7 @@ class Contacts extends React.Component {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(33%,1fr))",
+            gridTemplateColumns: "repeat(auto-fit,minmax(20vw,1fr))",
             // grid-template-columns: "1fr",
             backgroundColor: "transparent",
             overflow: "hidden"
