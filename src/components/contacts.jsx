@@ -82,7 +82,7 @@ class Contacts extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{width:"calc(100% - 20px)", margin: "10px"}}>
         <Backdrop
           sx={{
             color: "black",
@@ -113,14 +113,24 @@ class Contacts extends React.Component {
             margin: 0,
             top: "auto",
             right: "10vw",
-            bottom: "10vh",
+            bottom: "10vw",
             left: "auto",
-            height: "7vmin",
-            width: "7vmin",
-            position: "fixed"
+            height: "min(100px,10vw)",
+            width: "min(100px,10vw)",
+            position: "fixed",
+            // inset: "auto 10vw 10vw auto"
           }}
         >
-          <AddIcon />
+          <AddIcon style={{
+            // margin: 0,
+            // top: "auto",
+            // right: "10vw",
+            // bottom: "10vh",
+            // left: "auto",
+            // height: "7vw",
+            // width: "7vw",
+            position: "fixed"
+          }}/>
         </Fab>
         <div
           style={{
@@ -128,6 +138,7 @@ class Contacts extends React.Component {
             height: "80%",
             width: "94%",
             margin: "3%",
+            // padding: "5%",
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "stretch",
@@ -141,10 +152,16 @@ class Contacts extends React.Component {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(20vw,1fr))",
+            // margin: "10px",
+            padding: "10px",
+            gridTemplateColumns: "repeat(auto-fill,minmax(min(70vw,300px),1fr))",
+            gridGap: "10px",
+            // gridColumnGap: "10px", 
+            // columnGap: "10px",
+            justifyContent: "start",
             // grid-template-columns: "1fr",
             backgroundColor: "transparent",
-            overflow: "hidden"
+            overflow: "auto"
           }}
         >
           {this.state.contacts.map((contact) => (
@@ -156,8 +173,10 @@ class Contacts extends React.Component {
                 flexGrow: 1,
                 width: "100%",
                 height: "100%",
-                border: "1px solid",
-                margin: "2px",
+                border: "3px solid hotpink",
+                borderRadius: "20px",
+                // margin: "20px",
+                position: "static",
                 overflow: "auto",
                 overflowY: "hidden"
               }}
