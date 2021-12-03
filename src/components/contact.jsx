@@ -4,6 +4,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+// import Stack from '@mui/material/Stack';
+// import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 class Contact extends React.Component {
@@ -53,26 +61,27 @@ class Contact extends React.Component {
                 // justifyContent: "stretch",
                 // grid-template-columns: "1fr",
                 backgroundColor: "transparent",
-                overflow: "auto"
+                overflow: "auto",
+                overflowY: "hidden"
               }} onClick={this.handleToggle}>
-                <Typography variant="h4" style={{fontSize:"130%", alignSelf: "center", gridRow: "2/4"}}>{this.state.contact.name}</Typography>
+                <Typography variant="h4" style={{fontSize:"min(10vw,130%)", alignSelf: "center", gridRow: "2/4"}}>{this.state.contact.name}</Typography>
                 <Typography variant="h3" style={{fontSize:"130%", alignSelf: "center", gridRow: "5/6"}}>{this.state.contact.phone}</Typography>
                 <Typography variant="h4" style={{fontSize:"130%", alignSelf: "center", gridRow: "7/8"}}>{this.state.contact.place.title}</Typography>
                 <div style={{fontSize:"130%", alignSelf: "center", gridRow: "8/9", display: "grid", gridTemplateColumns: "1fr 1fr"}}>
-                    <Button
+                    <IconButton aria-label="edit">
+                        <EditIcon />
+                    </IconButton>
+                    {/* <Button
                         // onClick={() => this.insertNewContact()}
                         variant="outlined"
-                        style={{ width: "100%", padding: "0px", alignSelf: "center",  gridColumn: "1/2" }}
-                    >
-                        Edit
-                    </Button>
-                    <Button
-                        // onClick={() => this.insertNewContact()}
-                        variant="outlined"
+                        startIcon={<DeleteIcon />}
                         style={{ width: "100%", padding: "0px", alignSelf: "center",  gridColumn: "2/3" }}
                     >
                         Delete
-                    </Button>
+                    </Button> */}
+                    <IconButton aria-label="delete">
+                        <DeleteIcon />
+                    </IconButton>
                 </div> 
                 <div>
                 {/* <Button onClick={this.handleToggle}>Show backdrop</Button> */}

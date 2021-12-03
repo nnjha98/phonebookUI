@@ -200,7 +200,7 @@ class AddNew extends React.Component {
               display: "flex",
               flexDirection: "column",
               m: 1,
-              width: "25ch",
+              width: "100vw",
               backgroundColor: "white"
             }
           }}
@@ -214,7 +214,7 @@ class AddNew extends React.Component {
             variant="outlined"
             error={this.state.name.error}
             helperText={this.state.name.helperText}
-            style={{ width: 500, alignSelf: "center" }}
+            style={{ width: "100%", alignSelf: "center" }}
           />
           <TextField
             onChange={(e) => this.setState({ EnteredPhone: e.target.value })}
@@ -223,7 +223,7 @@ class AddNew extends React.Component {
             variant="filled"
             error={this.state.phone.error}
             helperText={this.state.phone.helperText}
-            style={{ width: 500, alignSelf: "center" }}
+            style={{ width: "100%", alignSelf: "center" }}
           />
           <TextField
             onChange={(e) => this.setState({ EnteredCity: e.target.value })}
@@ -234,7 +234,7 @@ class AddNew extends React.Component {
             helperText={this.state.place.helperText}
             value={this.state.EnteredCity}
             select={true}
-            style={{ width: 500, alignSelf: "center" }}
+            style={{ width: "100%", alignSelf: "center" }}
           >
             {this.state.placeList.map((option) => (
               <MenuItem key={option.ID} value={option.ID}>
