@@ -35,6 +35,26 @@ class Contact extends React.Component {
         this.setState({open:!this.state.open});
     };
 
+    onDelete = async () => {
+        var ID = this.state.contact.ID;
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "ID": String(ID)
+        });
+
+        var config = {
+        method: 'post',
+        url: 'https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/deleteContacts',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+
+        var response =  await axios(config);
+        this.props.onRefresh();
+    }
+
     componentDidMount()
     {
         console.log("1 contact card mounted with props: ", this.props);
@@ -79,7 +99,7 @@ class Contact extends React.Component {
                     >
                         Delete
                     </Button> */}
-                    <IconButton aria-label="delete">
+                    <IconButton onClick={this.onDelete()} aria-label="delete">
                         <DeleteIcon />
                     </IconButton>
                 </div> 

@@ -181,7 +181,7 @@ class Contacts extends React.Component {
                 overflowY: "hidden"
               }}
             >
-              <Contact key={contact.ID} contactInfo={contact} />
+              <Contact key={contact.ID} contactInfo={contact} onRefresh={this.refreshState}/>
             </div>
           ))}
         </div>
