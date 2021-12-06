@@ -18,7 +18,8 @@ class Contact extends React.Component {
     state={
         contact:{},
         isLoaded:false,
-        open: false
+        open: false,
+        color: "bg-gradient-to-br from-blue-400 to-orange-500",
     }
 
     constructor(props)
@@ -36,6 +37,7 @@ class Contact extends React.Component {
     };
 
     onDelete = async () => {
+        console.log("Trying to delete : ", this.state.contact.ID);
         var ID = this.state.contact.ID;
         var axios = require('axios');
         var data = JSON.stringify({
@@ -99,14 +101,15 @@ class Contact extends React.Component {
                     >
                         Delete
                     </Button> */}
-                    <IconButton onClick={this.onDelete()} aria-label="delete">
-                        <DeleteIcon />
+                    <IconButton aria-label="delete">
+                        <DeleteIcon onClick={this.onDelete}  />
                     </IconButton>
                 </div> 
                 <div>
                 {/* <Button onClick={this.handleToggle}>Show backdrop</Button> */}
                 <Backdrop
-                    sx={{ color: "black", zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "white" }}
+                    className={this.state.color}
+                    sx={{ color: "black", zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "white",  }}
                     open={this.state.open}
                     onClick={this.handleClose}
                 >

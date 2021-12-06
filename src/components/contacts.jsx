@@ -15,7 +15,16 @@ class Contacts extends React.Component {
   state = {
     contacts: [],
     open: false,
-    openAddNew: false
+    openAddNew: false,
+    colors: ["yellow",
+        "orange",
+        "blue",
+        "gray",
+        "red",
+        "green",
+        "indigo",
+        "purple",
+        "pink"]
   };
 
   handleClose = () => {
@@ -79,6 +88,14 @@ class Contacts extends React.Component {
       console.log(err);
     }
   };
+
+  getcolors = () => {
+      console.log("in get colors");
+      var rn = Math.floor((Math.random() * 9));
+      var rs = this.state.colors[rn%9];
+      console.log("rs is : ", rs);
+      return (rs);
+  }
 
   render() {
     return (
@@ -166,6 +183,7 @@ class Contacts extends React.Component {
         >
           {this.state.contacts.map((contact) => (
             <div
+              className={`bg-gradient-to-br from-${this.getcolors()}-400 to-${this.getcolors()}-500 hover:bg-gradient-to-br hover:from-${this.getcolors()}-200 hover:to-${this.getcolors()}-400`}
               key={contact.ID}
               variant="outlined"
               overflow="scroll"
@@ -173,7 +191,7 @@ class Contacts extends React.Component {
                 flexGrow: 1,
                 width: "100%",
                 height: "100%",
-                border: "3px solid hotpink",
+                border: "3px solid white",
                 borderRadius: "20px",
                 // margin: "20px",
                 position: "static",
