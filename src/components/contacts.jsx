@@ -16,15 +16,24 @@ class Contacts extends React.Component {
     contacts: [],
     open: false,
     openAddNew: false,
-    colors: ["yellow",
-        "orange",
-        "blue",
-        "gray",
-        "red",
-        "green",
-        "indigo",
-        "purple",
-        "pink"]
+    colors: [
+        ["yellow","orange"],
+        ["blue","indigo"],
+        ["red","pink"],
+        ["purple","pink"],
+        ["orange","red"],
+        ["green","blue"],
+        ["green","green"],
+        // "yellow",
+        // "orange",
+        // "blue",
+        // "gray",
+        // "red",
+        // "green",
+        // "indigo",
+        // "purple",
+        // "pink"
+      ]
   };
 
   handleClose = () => {
@@ -91,10 +100,11 @@ class Contacts extends React.Component {
 
   getcolors = () => {
       console.log("in get colors");
-      var rn = Math.floor((Math.random() * 9));
-      var rs = this.state.colors[rn%9];
-      console.log("rs is : ", rs);
-      return (rs);
+      var rn = Math.floor((Math.random() * 10));
+      var i =  0;//Math.floor((Math.random() * 10))%2;
+      var rs = this.state.colors[rn%7];
+      console.log("rs is : ", rs, `and i is ${i}`);
+      return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-700 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300`);
   }
 
   render() {
@@ -183,7 +193,7 @@ class Contacts extends React.Component {
         >
           {this.state.contacts.map((contact) => (
             <div
-              className={`bg-gradient-to-br from-${this.getcolors()}-400 to-${this.getcolors()}-500 hover:bg-gradient-to-br hover:from-${this.getcolors()}-200 hover:to-${this.getcolors()}-400`}
+              className={`${this.getcolors()}`}
               key={contact.ID}
               variant="outlined"
               overflow="scroll"
