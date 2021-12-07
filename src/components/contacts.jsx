@@ -16,24 +16,7 @@ class Contacts extends React.Component {
     contacts: [],
     open: false,
     openAddNew: false,
-    colors: [
-        ["yellow","orange"],
-        ["blue","indigo"],
-        ["red","pink"],
-        ["purple","pink"],
-        ["orange","red"],
-        ["green","blue"],
-        ["green","green"],
-        // "yellow",
-        // "orange",
-        // "blue",
-        // "gray",
-        // "red",
-        // "green",
-        // "indigo",
-        // "purple",
-        // "pink"
-      ]
+    
   };
 
   handleClose = () => {
@@ -70,7 +53,10 @@ class Contacts extends React.Component {
 
     try {
       var response = await axios(config);
-      console.log(response.data);
+      response.data.value.sort((a,b)=>{
+        return(a.name.localeCompare(b.name));
+      });
+      console.log("After sort: ",response.data);
       this.setState({ contacts: response.data.value });
     } catch (err) {
       console.log(err);
@@ -91,20 +77,41 @@ class Contacts extends React.Component {
 
     try {
       var response = await axios(config);
-      console.log(response.data);
+      response.data.value.sort((a,b)=>{
+        return(a.name.localeCompare(b.name));
+      });
+      console.log("After sort: ",response.data);
       this.setState({ contacts: response.data.value });
+      
     } catch (err) {
       console.log(err);
     }
   };
 
   getcolors = () => {
-      console.log("in get colors");
-      var rn = Math.floor((Math.random() * 10));
+    var colors= [
+      ["yellow","orange"],
+      ["orange","red"],
+      ["green","blue"],
+      ["red","pink"],
+      ["blue","indigo"],
+      ["purple","pink"],
+      // "yellow",
+      // "orange",
+      // "blue",
+      // "gray",
+      // "red",
+      // "green",
+      // "indigo",
+      // "purple",
+      // "pink"
+    ]
+      // console.log("in get colors");
+      var rn = Math.floor((Math.random() * 6));
       var i =  0;//Math.floor((Math.random() * 10))%2;
-      var rs = this.state.colors[rn%7];
-      console.log("rs is : ", rs, `and i is ${i}`);
-      return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-700 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300`);
+      var rs = colors[rn%6];
+      // console.log("rs is : ", rs, `and i is ${i}`);
+      return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-600 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300`);
   }
 
   render() {
@@ -174,7 +181,7 @@ class Contacts extends React.Component {
             overflow: "auto"
           }}
         >
-          <h1>All My Friends</h1>
+          <h1 className="text-7xl" style={{fontFamily: "Meow Script, cursive"}}>All My Friends</h1>
         </div>
         <div
           style={{
