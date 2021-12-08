@@ -11,8 +11,8 @@ class App extends React.Component {
 
   render() { 
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="App AnimatedBody"  style={{height:"max(100%,100vh)"}}>
+        <header className="App-header" style={{height:"max(100%,100vh)"}}>
           <Layout/>
         </header>
       </div>
