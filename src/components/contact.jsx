@@ -84,11 +84,13 @@ class Contact extends React.Component {
                 // grid-template-columns: "1fr",
                 backgroundColor: "transparent",
                 overflow: "auto",
-                overflowY: "hidden"
-              }} onClick={this.handleToggle}>
-                <Typography variant="h4" style={{fontSize:"min(10vw,130%)", alignSelf: "center", gridRow: "2/4"}}>{this.state.contact.name}</Typography>
-                <Typography variant="h3" style={{fontSize:"130%", alignSelf: "center", gridRow: "5/6"}}>{this.state.contact.phone}</Typography>
-                <Typography variant="h4" style={{fontSize:"130%", alignSelf: "center", gridRow: "7/8"}}>{this.state.contact.place.title}</Typography>
+                overflowY: "hidden",
+                // filter: "blur(5px)",
+            }} onClick={this.handleToggle}>
+                {/* <div style={{width: "100%", height: "100%", filter:"blur(20px)"}}></div> */}
+                <Typography variant="h4" style={{fontSize:"min(10vw,130%)", alignSelf: "center", gridRow: "2/4", fontFamily: "Corinthia, cursive"}}>{this.state.contact.name}</Typography>
+                <Typography variant="h3" style={{fontSize:"130%", alignSelf: "center", gridRow: "5/6", fontFamily: "Corinthia, cursive"}}>{this.state.contact.phone}</Typography>
+                <Typography variant="h4" style={{fontSize:"130%", alignSelf: "center", gridRow: "7/8", fontFamily: "Corinthia, cursive"}}>{this.state.contact.place.title}</Typography>
                 <div style={{fontSize:"130%", alignSelf: "center", gridRow: "8/9", display: "grid", gridTemplateColumns: "1fr 1fr"}}>
                     <IconButton aria-label="edit">
                         <EditIcon />

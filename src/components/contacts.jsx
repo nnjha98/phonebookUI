@@ -45,7 +45,7 @@ class Contacts extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
+        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
       // url:
       headers: {},
       crossdomain: true
@@ -69,7 +69,7 @@ class Contacts extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
+        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
       // url:
       headers: {},
       crossdomain: true
@@ -91,8 +91,11 @@ class Contacts extends React.Component {
   getcolors = () => {
     var colors= [
       ["yellow","orange"],
+      ["yellow","orange"],
       ["orange","red"],
       ["green","blue"],
+      ["green","blue"],
+      ["red","pink"],
       ["red","pink"],
       ["blue","indigo"],
       ["purple","pink"],
@@ -107,16 +110,16 @@ class Contacts extends React.Component {
       // "pink"
     ]
       // console.log("in get colors");
-      var rn = Math.floor((Math.random() * 6));
+      var rn = Math.floor((Math.random() * 9));
       var i =  0;//Math.floor((Math.random() * 10))%2;
-      var rs = colors[rn%6];
+      var rs = colors[rn%9];
       // console.log("rs is : ", rs, `and i is ${i}`);
-      return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-600 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300`);
+      return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-700 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300 `);
   }
 
   render() {
     return (
-      <div style={{width:"calc(100% - 20px)", margin: "10px"}}>
+      <div className="AnimatedBody min-h-screen" style={{width:"100%",  margin: "0px"}}>
         <Backdrop
           sx={{
             color: "black",
@@ -168,20 +171,21 @@ class Contacts extends React.Component {
         </Fab>
         <div
           style={{
-            display: "flex",
-            height: "80%",
-            width: "94%",
-            margin: "3%",
-            // padding: "5%",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "stretch",
-            backgroundColor: "transparent",
-            flexWrap: "wrap",
-            overflow: "auto"
+            zIndex: -1,
+          //   display: "inline-block",
+          //   height: "min(10vw,9rem)",
+          //   width: "100%",
+          //   margin: "0%",
+          //   // padding: "5%",
+          //   flexDirection: "row",
+          //   justifyContent: "space-evenly",
+          //   alignItems: "stretch",
+          //   backgroundColor: "transparent",
+          //   flexWrap: "wrap",
+          //   overflow: "auto"
           }}
         >
-          <h1 className="text-7xl" style={{fontFamily: "Meow Script, cursive"}}>All My Friends</h1>
+          <h1 style={{fontFamily: "Josefin Sans", fontSize: "min(15vw,8rem)"}}>All My Friends</h1>
         </div>
         <div
           style={{
@@ -195,7 +199,8 @@ class Contacts extends React.Component {
             justifyContent: "start",
             // grid-template-columns: "1fr",
             backgroundColor: "transparent",
-            overflow: "auto"
+            // filter: "blur(0px)",
+            overflow: "auto",
           }}
         >
           {this.state.contacts.map((contact) => (
@@ -213,7 +218,8 @@ class Contacts extends React.Component {
                 // margin: "20px",
                 position: "static",
                 overflow: "auto",
-                overflowY: "hidden"
+                overflowY: "hidden",
+                // filter: "blur(20px)",
               }}
             >
               <Contact key={contact.ID} contactInfo={contact} onRefresh={this.refreshState}/>
