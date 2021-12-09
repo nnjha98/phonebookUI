@@ -16,7 +16,10 @@ class Contacts extends React.Component {
     contacts: [],
     open: false,
     openAddNew: false,
-    
+    nst: "",
+    pst: "",
+    contactsRaw: [],
+    contactsRawer: [],
   };
 
   handleClose = () => {
@@ -45,7 +48,7 @@ class Contacts extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
+        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
       // url:
       headers: {},
       crossdomain: true
@@ -57,7 +60,7 @@ class Contacts extends React.Component {
         return(a.name.localeCompare(b.name));
       });
       console.log("After sort: ",response.data);
-      this.setState({ contacts: response.data.value });
+      this.setState({ contacts: response.data.value, contactsRaw: response.data.value, contactsRawer: response.data.value });
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +72,7 @@ class Contacts extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
+        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Contacts?$expand=place",
       // url:
       headers: {},
       crossdomain: true
@@ -81,7 +84,7 @@ class Contacts extends React.Component {
         return(a.name.localeCompare(b.name));
       });
       console.log("After sort: ",response.data);
-      this.setState({ contacts: response.data.value });
+      this.setState({ contacts: response.data.value , contactsRaw: response.data.value, contactsRawer: response.data.value });
       
     } catch (err) {
       console.log(err);
@@ -117,9 +120,41 @@ class Contacts extends React.Component {
       return (`bg-gradient-to-br from-${rs[i]}-400 to-${rs[1-i]}-700 hover:bg-gradient-to-br hover:from-${rs[i]}-100 hover:to-${rs[1-i]}-300 `);
   }
 
+
+  updateState = ()=>
+  {
+    console.log(`in upstate with nst : ${this.state.nst} and pst : ${this.state.pst}`);
+    this.state.contactsRawer.forEach(c=>{console.log(`c.name=${c.name} and c.name.toLowerCase()=${c.name.toLowerCase()} and c.name.toLowerCase().indexOf=${c.name.toLowerCase().indexOf(this.state.nst)}`)});
+    
+    console.log("Trying to filter. After filter : ", this.state.contactsRawer.filter(c=>(c.name.toLowerCase().indexOf(this.state.nst)!==-1)));
+    // .filter(c=>true
+    //   //c => ((c.name.toLowerCase().indexOf(this.state.nst)!==-1) && (c.place.title.toLowerCase().indexOf(this.state.pst)!=-1))
+    // ));
+    this.setState({contacts:this.state.contactsRaw.filter(
+      c => ((c.name.toLowerCase().indexOf(this.state.nst)!==-1) && (c.place.title.toLowerCase().indexOf(this.state.pst)!=-1))
+    )});
+
+  }
+
+  searchChange = (e) => 
+  {
+    console.log(`in nst with e : ${e.target.value.toLowerCase()}`);
+    this.setState({ nst: e.target.value.toLowerCase() },()=>this.updateState());
+    // console.log(`in nst with nst : ${this.state.nst}`);
+    
+  }
+
+
+  searchChangePlace = (e) =>
+  {
+    console.log(`in pst with e : ${e.target.value.toLowerCase()}`);
+    this.setState({pst: e.target.value.toLowerCase()},()=>this.updateState());
+    
+  }
+
   render() {
     return (
-      <div className="AnimatedBody min-h-screen" style={{width:"100%",  margin: "0px"}}>
+      <div className="AnimatedBody" style={{width:"100%",minHeight: "100vh",  margin: "0px"}}>
         <Backdrop
           sx={{
             color: "black",
@@ -187,6 +222,8 @@ class Contacts extends React.Component {
         >
           <h1 style={{fontFamily: "Josefin Sans", fontSize: "min(15vw,8rem)"}}>All My Friends</h1>
         </div>
+        <div><input onChange={(e)=>this.searchChange(e)} style={{color:"black", background: "transparent"}} placeholder="Enter name search term "></input><h1>{this.state.nst}</h1></div>
+        <div><input onChange={(e)=>this.searchChangePlace(e)} style={{color:"black", background: "transparent"}} placeholder="Enter place search term "></input><h1>{this.state.pst}</h1></div>
         <div
           style={{
             display: "grid",

@@ -64,7 +64,7 @@ class AddNew extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Places"
+        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Places"
     };
 
     try {
@@ -82,7 +82,7 @@ class AddNew extends React.Component {
     var config = {
       method: "get",
       url:
-        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Places"
+        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/Places"
     };
 
     try {
@@ -110,7 +110,7 @@ class AddNew extends React.Component {
     var config = {
       method: "post",
       url:
-        "https://cors-anywhere.herokuapp.com/https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/insertContacts",
+        "https://apple-inc--explr-sap-java-apps-poc-phonebookv6-srv.cfapps.us10.hana.ondemand.com/api/contact/insertContacts",
       headers: {
         "Content-Type": "application/json"
       },
